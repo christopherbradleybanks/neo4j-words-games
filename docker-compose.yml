@@ -1,0 +1,24 @@
+services:
+  neo4j:
+    container_name: neo4j
+    image: neo4j:5.21.0
+    ports:
+      - 7474:7474
+      - 7687:7687
+    environment:
+      - NEO4J_AUTH=neo4j/${NEO4J_PASSWORD}
+      - NEO4J_apoc_export_file_enabled=true
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_apoc_import_file_use__neo4j__config=true
+      - NEO4J_PLUGINS=["apoc", "graph-data-science"]
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.\\\*
+      - NEO4J_browser_remote__content__hostname__whitelist=*
+      - NEO4J_browser_post__connect__cmd=guide http://localhost:8081/html/words.html
+    volumes:
+      - ./neo4j/data:/data
+      - ./neo4j/logs:/logs
+      - ./neo4j/import:/import
+      - ./neo4j/plugins:/plugins
+
+
+  

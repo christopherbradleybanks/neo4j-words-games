@@ -1,0 +1,287 @@
+<style type="text/css" media="screen">
+/*
+.nodes-image {
+	margin:-100;
+}
+*/	
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
+
+.imageblock .content img, .image img {max-width: 900px;max-height: 300px;}
+.deck h3, .deck h4 {display: block !important;margin-bottom:8px;margin-top:5px;}
+.listingblock {margin:8px;}
+.pull-bottom {position:relative;bottom:1em;}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.admonitionblock.note.speaker { display:none; }
+</style>
+<style type="text/css" media="screen">
+/* #editor.maximize-editor .CodeMirror-code { font-size:24px; line-height:26px; } */
+</style>
+<article class="guide" ng-controller="AdLibDataController">
+  <carousel class="deck container-fluid">
+    <!--slide class="row-fluid">
+      <div class="col-sm-3">
+        <h3>:guide Presenting Neo4j by Chris Banks</h3>
+        <p class="lead">Information</p>
+			<!dl>
+				
+				
+				
+				
+				
+			</dl>
+		</div>
+      <div class="col-sm-9">
+        <figure>
+          <img style="width:300px" src=""/>
+        </figure>
+      </div>
+    </slide-->
+    <div class="literalblock">
+<div class="content">
+<pre>:neo4j-version: 5.21
+:author: Chris Banks</pre>
+</div>
+</div>
+
+
+
+   <h4>:guide Presenting Neo4j by Chris Banks</h4>
+   
+
+
+<slide class="row-fluid">
+  <div class="col-sm-12">
+    <h3>Introduction to Neo4j (3 minutes)</h3>
+    <br/>
+    <div>
+      <div class="paragraph">
+<p>Neo4j is a powerful graph database management system designed to handle highly interconnected data. Unlike traditional relational databases, Neo4j stores data in a graph structure consisting of nodes, relationships, and properties.
+- <strong>TODO</strong>: Add additional data points</p>
+</div>
+<div class="paragraph">
+<p>Want to know more?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>TODO</strong>: Add Links to browser guidses and documentation published by neo4j</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a play-topic='intro'>Browser Guide</a></p>
+</li>
+<li>
+<p><a play-topic='concepts'>Neo4j Concepts</a></p>
+</li>
+<li>
+<p><a play-topic='fundamentals'>About Cypher</a></p>
+</li>
+<li>
+<p><a play-topic='cypher'>Intro to Cypher</a></p>
+</li>
+<li>
+<p><a help-topic='keys'>Help Keys</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>TODO</strong>: Link Graph academy</p>
+</li>
+<li>
+<p><strong>TODO</strong>: Link Neo4j Sandbox</p>
+</li>
+</ul>
+</div>
+	</div>
+  </div>
+</slide>
+
+
+
+<slide class="row-fluid">
+  <div class="col-sm-12">
+    <h3>Advantages over Relational SQL Databases (5 minutes)</h3>
+    <br/>
+    <div>
+      <div class="paragraph">
+<p>Neo4j offers several advantages over relational SQL databases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Schema Flexibility</strong>: Neo4j is schema-free, allowing for dynamic and agile data modeling compared to rigid schemas in SQL databases.</p>
+</li>
+<li>
+<p><strong>Performance</strong>: Graph traversal in Neo4j is efficient for complex queries involving interconnected data, eliminating the need for expensive join operations.</p>
+</li>
+<li>
+<p><strong>Use Cases</strong>: Neo4j excels in scenarios such as social networks, recommendation engines, fraud detection, and pathfinding problems.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>-<strong>TODO</strong>: ADD links to relevant documentation published by neo4j</p>
+</div>
+	</div>
+  </div>
+</slide>
+
+
+
+<slide class="row-fluid">
+  <div class="col-sm-12">
+    <h3>Demo: Graph Algorithms and Shortest Path (5 minutes)</h3>
+    <br/>
+    <div>
+      <div class="paragraph">
+<p>In this demo, we&#8217;ll explore how Neo4j handles graph algorithms with a practical example similar to the word game "Tangle":</p>
+</div>
+<div class="paragraph">
+<p><strong>Scenario</strong>: Given two 5-letter English words, find the shortest path between them where each step changes one letter to form a valid English word.</p>
+</div>
+<div class="paragraph">
+<p><strong>Implementation</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Step 1</strong>: Load a dataset of English words into Neo4j as nodes.</p>
+</li>
+<li>
+<p><strong>Step 2</strong>: Create relationships between nodes (words) if they differ by exactly one character.</p>
+</li>
+<li>
+<p><strong>Step 3</strong>: Execute a shortest path algorithm query to find the shortest transformation path between two input words.</p>
+</li>
+</ul>
+</div>
+	</div>
+  </div>
+</slide>
+
+
+
+<slide class="row-fluid">
+  <div class="col-sm-12">
+    <h3>Load the dataset of English words</h3>
+    <br/>
+    <div>
+      <div class="paragraph">
+<p>The below cypher loads data from the import folder of neo4j</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->LOAD CSV FROM 'file:///words.csv' AS row
+WITH row[0] AS word
+WHERE size(word) &gt;= 3 AND size(word) &lt;= 6
+CREATE (:Word {value: word, length: size(word)})<!--/code--></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the above file was not found you can load the dataset via a url</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->LOAD CSV FROM 'https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt' AS row
+WITH row[0] AS word
+WHERE size(word) &gt;= 3 AND size(word) &lt;= 6
+CREATE (:Word {value: word, length: size(word)})<!--/code--></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Expand the knowledge graph with character positions for each letter within the word</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->MATCH (word:Word)
+WITH word
+Foreach (i in range(1, word.length) | MERGE (l:Letter {value: substring(word.value,i-1,1), position: i}) MERGE (word)-[:CONTAINS]-&gt;(l))<!--/code--></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>TODO</strong>: add links to each keyword found in the cypher above i.e. :help Foreach</p>
+</li>
+</ul>
+</div>
+	</div>
+  </div>
+</slide>
+
+
+
+<slide class="row-fluid">
+  <div class="col-sm-12">
+    <h3>Create relationships between nodes (words)</h3>
+    <br/>
+    <div>
+      <div class="paragraph">
+<p>create the linked relationship using <a href="https://neo4j.com/docs/graph-data-science/current/algorithms/node-similarity/" target="_blank"><strong>Overlap Similarity</strong></a></p>
+</div>
+<div class="paragraph">
+<p>Project the data into a named graph</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->CALL gds.graph.project(
+    'myGraph',
+    ['Word', 'Letter'],
+    {
+        CONTAINS: {
+        }
+    }
+);<!--/code--></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Determine the similarity by calculating the overlap coefficient
+based on the letters in the words and the letters position within the word</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->UNWIND range(3,6) AS wordlength
+CALL gds.nodeSimilarity.write('myGraph', {
+    writeRelationshipType: 'OVERLAP',
+    writeProperty: 'score',
+    topK: 1000, //each node can have at most 1000 similar nodes
+    degreeCutoff: wordlength, //only include words with the number of letters &gt;=  wordlength
+    upperDegreeCutoff: wordlength, //only include words with the number of letters &lt;= wordlength
+    similarityCutoff: (wordlength -1 * 1.0) / (wordlength * 1.0) // only
+})
+YIELD nodesCompared, relationshipsWritten
+RETURN *<!--/code--></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>TODO</strong>: add links for each GDS statement explaining what is happening</p>
+</li>
+</ul>
+</div>
+	</div>
+  </div>
+</slide>
+
+
+
+<slide class="row-fluid">
+  <div class="col-sm-12">
+    <h3>Execute a shortest path algorithm</h3>
+    <br/>
+    <div>
+      <div class="paragraph">
+<p>-<strong>TODO</strong>: add shortest path example use parameterized query to demonstrate</p>
+</div>
+	</div>
+  </div>
+</slide>
+  </carousel>
+</article>
