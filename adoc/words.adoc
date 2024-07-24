@@ -2,7 +2,7 @@
 :neo4j-version: 5.21
 :author: Chris Banks
 
-== Intro To Neo4j - this is a test
+== Intro To Neo4j
 
 Neo4j is a native graph database and has a query language called Cypher also sometimes called GQL (Graph Query Language) +
 it is similar to SQL but designed to better express graph traversals.
@@ -77,7 +77,7 @@ In this demo, we'll explore how Neo4j handles graph algorithms with a practical 
 
 == Problem 1: 
 
-===How to build a dataset of english words
+=== How to build a dataset of english words
 
 The below cypher loads data from the import folder of neo4j 
 
@@ -107,6 +107,7 @@ Want to know more?
 == Problem 2: 
 
 === How to determine single character difference between words
+
 create the linked relationship using https://neo4j.com/docs/graph-data-science/current/algorithms/node-similarity/[*Overlap Similarity*^]
 
 //image::http://localhost:8081/img/overlap_nodesim.svg[Static,300]
@@ -142,22 +143,23 @@ RETURN *
 
 - *TODO*: add links for each GDS statement explaining what is happening 
 
-== Problem 3: Finding the shortest path between two words
+== Problem 3:
 
-*TODO* Flesh out page and include documentation references
+=== Finding the shortest path between two words to
 
+Lets head to https://everydaypuzzlesgame.com/g/tangle/index.html[*Tangle*^] now
+
+Let's get the source word and target word and update the below statement to reflect today's puzzle
 
 [source, cypher]
 :params [{start, end}] => {RETURN 'rust' AS start, 'best' AS end }
 
+Using Neo4j's shortest path algorithm we will determine the solution to today's Tangle puzzle
+
 [source, cypher]
-MATCH (source:Word {value: $start}), (target:Word {value: $end})
-,  p=shortestPath((source)-[:SIMILAR*]-(target))
-RETURN p
-
-== Let's Solve Tangle
-
-*TODO*
+MATCH (start:Word {value: $start}), (end:Word {value: $end})
+,  path=shortestPath((start)-[:SIMILAR*]-(end))
+RETURN path
 
 == Summary
 

@@ -19,6 +19,8 @@ services:
       - ./neo4j/logs:/logs
       - ./neo4j/import:/import
       - ./neo4j/plugins:/plugins
+    depends_on:
+      - guide
   guide:
     container_name: guide
     build: .

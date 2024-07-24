@@ -50,7 +50,7 @@
 
 <slide class="row-fluid">
   <div class="col-sm-12">
-    <h3>Intro To Neo4j - this is a test</h3>
+    <h3>Intro To Neo4j</h3>
     <br/>
     <div>
       <div class="paragraph">
@@ -207,10 +207,11 @@ Relationships are also referred to as edges, links, or lines.</p>
     <h3>Problem 1:</h3>
     <br/>
     <div>
-      <div class="paragraph">
-<p>===How to build a dataset of english words</p>
-</div>
-<div class="paragraph">
+      
+
+
+   <h4>How to build a dataset of english words</h4>
+   <div class="paragraph">
 <p>The below cypher loads data from the import folder of neo4j</p>
 </div>
 <div class="listingblock">
@@ -327,37 +328,33 @@ RETURN *<!--/code--></pre>
 
 <slide class="row-fluid">
   <div class="col-sm-12">
-    <h3>Problem 3: Finding the shortest path between two words</h3>
+    <h3>Problem 3:</h3>
     <br/>
     <div>
-      <div class="paragraph">
-<p><strong>TODO</strong> Flesh out page and include documentation references</p>
+      
+
+
+   <h4>Finding the shortest path between two words to</h4>
+   <div class="paragraph">
+<p>Lets head to <a href="https://everydaypuzzlesgame.com/g/tangle/index.html" target="_blank"><strong>Tangle</strong></a> now</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s get the source word and target word and update the below statement to reflect today&#8217;s puzzle</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->:params [{start, end}] =&gt; {RETURN 'rust' AS start, 'best' AS end }<!--/code--></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Using Neo4j&#8217;s shortest path algorithm we will determine the solution to today&#8217;s Tangle puzzle</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->MATCH (source:Word {value: $start}), (target:Word {value: $end})
-,  p=shortestPath((source)-[:SIMILAR*]-(target))
-RETURN p<!--/code--></pre>
+<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->MATCH (start:Word {value: $start}), (end:Word {value: $end})
+,  path=shortestPath((start)-[:SIMILAR*]-(end))
+RETURN path<!--/code--></pre>
 </div>
-</div>
-	</div>
-  </div>
-</slide>
-
-
-
-<slide class="row-fluid">
-  <div class="col-sm-12">
-    <h3>Let&#8217;s Solve Tangle</h3>
-    <br/>
-    <div>
-      <div class="paragraph">
-<p><strong>TODO</strong></p>
 </div>
 	</div>
   </div>
