@@ -2,78 +2,77 @@
 :neo4j-version: 5.21
 :author: Chris Banks
 
-== Intro To Neo4j - tst
+== Intro To Neo4j
 
 Neo4j is a native graph database and has a query language called Cypher also sometimes called GQL (Graph Query Language) +
 it is similar to SQL but designed to better express graph traversals.
 Neo4j uses a property graph database model which uses the principals of graph theory
 and persists its data as a collection of nodes and the relationships between them.
 
-Nodes 
+=== Key Terms
 
-[cols="1",options="noheader"]
-|===
-|describe entities (discrete objects) of a domain.
+*Nodes*:
+    Describe entities (discrete objects) of a domain.
+    Can have zero or more labels to define (classify) what kind of nodes they are.
 
-|can have zero or more labels to define (classify) what kind of nodes they are.
-|=== 
+*Relationships*:
+    Describe a single directed connection between a source node and a target node.
+    Must have a single type or name to define (classify) what type of relationship they are.
 
-Relationships
-
-[cols="1",options="noheader"]
-|===
-|describe a single directed connection between a source node and a target node.
-
-|must have a type (one type) to define (classify) what type of relationship they are.
-|=== 
-
-
-Properties
-
-[cols="1",options="noheader"]
-|===
-|Nodes and relationships can have properties (key-value pairs), which further describe them. 
-|===   
+*Properties*:
+    Nodes and relationships can have properties (key-value pairs), which further describe them.  
  
-In mathematics, graph theory is the study of graphs.
 
-In graph theory:
+In mathematics, graph theory is the study of graphs. 
+In graph theory *nodes* will sometimes be referred to as vertices or points
+and *relationships* will often be called edges, links or lines. 
 
-Nodes are also referred to as vertices or points.
-Relationships are also referred to as edges, links, or lines.
 
 Want to know more?
- 
-* pass:a[<a play-topic='concepts'>Neo4j Concepts</a>]
-* pass:a[<a play-topic='fundamentals'>About Cypher</a>]
+
+[%noheader,cols=2*] 
+|===
+|pass:a[<a play-topic='concepts'>Neo4j Concepts</a>]
+|pass:a[<a play-topic='fundamentals'>About Cypher</a>]
+|===
 
 == Why Choose Neo4j?
 
-Neo4j offers several advantages over relational SQL databases:
+*Intuitive*: 
+    When you're modeling data in Neo4j you don't need to translate it into a tabular format, there are no foreign keys, or join tables. Related data in Neo4j is far easier to model and understand.
 
-- *Schema Flexibility*: Neo4j is schema-free, allowing for dynamic and agile data modeling compared to rigid schemas in SQL databases.
-- *Performance*: Graph traversal in Neo4j is efficient for complex queries involving interconnected data, eliminating the need for expensive join operations.
-- *Use Cases*: Neo4j excels in scenarios such as social networks, recommendation engines, fraud detection, and pathfinding problems.
+*Flexible*: 
+    Neo4j is schema-free, allowing for dynamic and agile data modeling compared to rigid schemas in SQL databases.
 
--*TODO* Flesh this slide out a bit more
+*Fast*: 
+    Graph traversal using https://dmccreary.medium.com/how-to-explain-index-free-adjacency-to-your-manager-1a8e68ec664a[*Index-free adjacency*^] in Neo4j is efficient for complex queries involving interconnected data, eliminating the need for expensive join operations.
+
+*Expressive*:
+    Cypher (the query language) is very expressive, by using ascii-art queries you essentially draw a map to your data
+
+*Graph Algorithms*: 
+    There are many different graph algorithms you can use within Neo4j each with their own capabilities, allowing you to solve problems unique to graphs directly against the data, providing cost and time-saving insights
+
+*Use Cases*: 
+    Neo4j excels in scenarios such as social networks, recommendation engines, fraud detection,and pathfinding problems.
 
 Want to know more?
 
-Graph Database for Beginners Blog Series
+Blogs
 
+* https://neo4j.com/blog/why-graph-databases-are-the-future/?ref=blog[*Why graph databases are the future*^] 
+* https://neo4j.com/blog/why-graph-data-relationships-matter/?ref=blog[*Why Connected Data Matters*^] 
+* https://neo4j.com/blog/native-vs-non-native-graph-technology/[*Native vs. Non-Native Graph Database*^]
+
+
+https://neo4j.com/use-cases/?utm_source=Google&utm_medium=PaidSearch&utm_campaign=Evergreen&utm_content=AMS-Search-SEMCE-DSA-None-SEM-SEM-NonABM&utm_term=&utm_adgroup=DSA&gad_source=1&gclid=CjwKCAjwzIK1BhAuEiwAHQmU3rHlh92csAeuTAZryM3YZIjUl_GoutQ-HA8wPU6lUIr4QOryfBEuJBoC1nUQAvD_BwE[*More Use Cases*^]
 
 
 == Demo: Tangle Puzzle
 
-In this demo, we'll explore how Neo4j handles graph algorithms with a practical example similar to the word game https://everydaypuzzlesgame.com/g/tangle/index.html[*Tangle*^]:
+In this demo we’re going to use the unique capabilities of Neo4j's graph architecture to solve a https://everydaypuzzlesgame.com/g/tangle/index.html[*Tangle*^] word puzzle.
 
-*Scenario*: Given two English words of length n, find the shortest path between them where each step changes one letter to form a valid English word.
-
-*Implementation*:
-
-- **Step 1**: Load a dataset of English words into Neo4j as nodes.
-- **Step 2**: Create relationships between nodes (words) if they differ by exactly one character.
-- **Step 3**: Execute a shortest path algorithm query to find the shortest transformation path between two input words.
+*Scenario*: The puzzle will offer two four letter words and require us to find the shortest path between the two words while only changing one letter at a time
 
 == Problem 1: 
 
@@ -95,24 +94,37 @@ WITH word
 FOREACH (i in range(1, word.length) | MERGE (l:Letter {value: substring(word.value,i-1,1), position: i}) MERGE (word)-[:CONTAINS]->(l))
 
 Want to know more?
+[%noheader,cols=2*] 
+|===
+|pass:a[<a help-topic='load csv'>LOAD CSV</a>] 
+|pass:a[<a help-topic='with'>WITH</a>] 
 
-* pass:a[<a help-topic='load csv'>LOAD CSV</a>] 
-* pass:a[<a help-topic='with'>WITH</a>] 
-* pass:a[<a help-topic='match'>MATCH</a>] 
-* pass:a[<a help-topic='where'>WHERE</a>] 
-* pass:a[<a help-topic='create'>CREATE</a>] 
-* pass:a[<a help-topic='foreach'>FOREACH</a>] 
-* pass:a[<a help-topic='merge'>MERGE</a>]
+|pass:a[<a help-topic='match'>MATCH</a>] 
+|pass:a[<a help-topic='where'>WHERE</a>] 
+
+|pass:a[<a help-topic='create'>CREATE</a>] 
+|pass:a[<a help-topic='foreach'>FOREACH</a>] 
+
+|pass:a[<a help-topic='merge'>MERGE</a>]
+|===
 
 == Problem 2: 
 
-=== How to determine single character difference between words
+=== How to we determine single character difference between words
 
-create the linked relationship using https://neo4j.com/docs/graph-data-science/current/algorithms/node-similarity/[*Overlap Similarity*^]
+To solve this problem we will use the https://neo4j.com/docs/graph-data-science/current/algorithms/node-similarity/[*Overlap Similarity*^] algorithm
 
-//image::http://localhost:8081/img/overlap_nodesim.svg[Static,300]
+The formula for calculating overlap simarilty is:
 
-Project the data into a named graph
+----
+Overlap (A,B) = A ∩ B / min(|A|,|B|)
+----
+
+four our implementation this means:
+how many characters are equal (same letter,same position) divided by the length of the shortest word
+
+*Step 1*:
+Create a graph projection
 
 [source,cypher]
 CALL gds.graph.project(
@@ -124,6 +136,7 @@ CALL gds.graph.project(
     }
 );
 
+*Step 2*: 
 Determine the similarity by calculating the overlap coefficient 
 based on the letters in the words and the letters position within the word
 
@@ -141,20 +154,24 @@ CALL gds.nodeSimilarity.write('myGraph', {
 YIELD nodesCompared, relationshipsWritten
 RETURN *
 
-- *TODO*: add links for each GDS statement explaining what is happening 
+Want to know more?
+
+https://neo4j.com/docs/graph-data-science/current/management-ops/graph-creation/graph-project/[*Graph Projection*^] 
+
+https://neo4j.com/docs/graph-data-science/current/algorithms/node-similarity/[*Overlap Similarity*^]
 
 == Problem 3:
 
-=== Finding the shortest path between two words to
+=== Finding the shortest path between two words
 
 Lets head to https://everydaypuzzlesgame.com/g/tangle/index.html[*Tangle*^] now
 
-Let's get the source word and target word and update the below statement to reflect today's puzzle
+We'll update the below cypher's start and end parameters to reflect today's puzzle
 
 [source, cypher]
 :params [{start, end}] => {RETURN 'rust' AS start, 'best' AS end }
 
-Using Neo4j's shortest path algorithm we will determine the solution to today's Tangle puzzle
+Using Neo4j's shortest path algorithm we can determine the solution to today's Tangle puzzle
 
 [source, cypher]
 MATCH (start:Word {value: $start}), (end:Word {value: $end})
@@ -163,7 +180,25 @@ RETURN path
 
 == Summary
 
-*TODO*
+We used two graph algorithms (shortest path algorithm and overlap similarity algorithm) to solve a tangle word puzzle
+
+Both of these algorithms are natively supported by neo4j because it is a graph database
+
+This allowed us to do a computationally expensive search very quickly because of index free adjacency
+
+The key message of index-free adjacency is, that the complexity to traverse the whole graph is O(n), where n is the number of nodes. In contrast, using any index will have complexity O(n log n).
+
+No matter what words we had, we can always find each individual word very quickly ( if we had different languages, more letters, etc it would be just as fast and effective)
+
+=== Next Steps
+
+We could start expanding this knowledge graph to solve other word puzzles such as  crosswords, boggle, wordle, etc 
+
+Try adding an index on the property and see how that affects our search
+
+[source, cypher]
+CREATE INDEX word_value_index IF NOT EXISTS
+FOR (n:Word) ON (n.value)
 
 == Further Reading
 
@@ -179,6 +214,7 @@ RETURN path
 
 * https://neo4j.com/blog/why-graph-databases-are-the-future/?ref=blog[*Why graph databases are the future*^] 
 * https://neo4j.com/blog/why-graph-data-relationships-matter/?ref=blog[*Why Connected Data Matters*^] 
+* https://neo4j.com/blog/native-vs-non-native-graph-technology/[*Native vs. Non-Native Graph Database*^]
 
 === Training
 

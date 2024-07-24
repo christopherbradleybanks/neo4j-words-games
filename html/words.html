@@ -59,74 +59,44 @@ it is similar to SQL but designed to better express graph traversals.
 Neo4j uses a property graph database model which uses the principals of graph theory
 and persists its data as a collection of nodes and the relationships between them.</p>
 </div>
-<div class="paragraph">
-<p>Nodes</p>
-</div>
-<table class="table tableblock frame-all grid-all" style="width: 100%;">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">describe entities (discrete objects) of a domain</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">can have zero or more labels to define (classify) what kind of nodes they are.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Relationships</p>
-</div>
-<table class="table tableblock frame-all grid-all" style="width: 100%;">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">describe a single directed connection between a source node and a target node.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">must have a type (one type) to define (classify) what type of relationship they are.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Properties</p>
-</div>
-<table class="table tableblock frame-all grid-all" style="width: 100%;">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nodes and relationships can have properties (key-value pairs), which further describe them.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>In mathematics, graph theory is the study of graphs.</p>
+
+
+
+   <h4>Key Terms</h4>
+   <div class="paragraph">
+<p><strong>Nodes</strong>:
+    Describe entities (discrete objects) of a domain.
+    Can have zero or more labels to define (classify) what kind of nodes they are.</p>
 </div>
 <div class="paragraph">
-<p>In graph theory:</p>
+<p><strong>Relationships</strong>:
+    Describe a single directed connection between a source node and a target node.
+    Must have a single type or name to define (classify) what type of relationship they are.</p>
 </div>
 <div class="paragraph">
-<p>Nodes are also referred to as vertices or points.
-Relationships are also referred to as edges, links, or lines.</p>
+<p><strong>Properties</strong>:
+    Nodes and relationships can have properties (key-value pairs), which further describe them.</p>
+</div>
+<div class="paragraph">
+<p>In mathematics, graph theory is the study of graphs.
+In graph theory <strong>nodes</strong> will sometimes be referred to as vertices or points
+and <strong>relationships</strong> will often be called edges, links or lines.</p>
 </div>
 <div class="paragraph">
 <p>Want to know more?</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a play-topic='concepts'>Neo4j Concepts</a></p>
-</li>
-<li>
-<p><a play-topic='fundamentals'>About Cypher</a></p>
-</li>
-</ul>
-</div>
+<table class="table tableblock frame-all grid-all" style="width: 100%;">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a play-topic='concepts'>Neo4j Concepts</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a play-topic='fundamentals'>About Cypher</a></p></td>
+</tr>
+</tbody>
+</table>
 	</div>
   </div>
 </slide>
@@ -139,29 +109,50 @@ Relationships are also referred to as edges, links, or lines.</p>
     <br/>
     <div>
       <div class="paragraph">
-<p>Neo4j offers several advantages over relational SQL databases:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Schema Flexibility</strong>: Neo4j is schema-free, allowing for dynamic and agile data modeling compared to rigid schemas in SQL databases.</p>
-</li>
-<li>
-<p><strong>Performance</strong>: Graph traversal in Neo4j is efficient for complex queries involving interconnected data, eliminating the need for expensive join operations.</p>
-</li>
-<li>
-<p><strong>Use Cases</strong>: Neo4j excels in scenarios such as social networks, recommendation engines, fraud detection, and pathfinding problems.</p>
-</li>
-</ul>
+<p><strong>Intuitive</strong>:
+    When you&#8217;re modeling data in Neo4j you don&#8217;t need to translate it into a tabular format, there are no foreign keys, or join tables. Related data in Neo4j is far easier to model and understand.</p>
 </div>
 <div class="paragraph">
-<p>-<strong>TODO</strong> Flesh this slide out a bit more</p>
+<p><strong>Flexible</strong>:
+    Neo4j is schema-free, allowing for dynamic and agile data modeling compared to rigid schemas in SQL databases.</p>
+</div>
+<div class="paragraph">
+<p><strong>Fast</strong>:
+    Graph traversal using <a href="https://dmccreary.medium.com/how-to-explain-index-free-adjacency-to-your-manager-1a8e68ec664a" target="_blank"><strong>Index-free adjacency</strong></a> in Neo4j is efficient for complex queries involving interconnected data, eliminating the need for expensive join operations.</p>
+</div>
+<div class="paragraph">
+<p><strong>Expressive</strong>:
+    Cypher (the query language) is very expressive, by using ascii-art queries you essentially draw a map to your data</p>
+</div>
+<div class="paragraph">
+<p><strong>Graph Algorithms</strong>:
+    There are many different graph algorithms you can use within Neo4j each with their own capabilities, allowing you to solve problems unique to graphs directly against the data, providing cost and time-saving insights</p>
+</div>
+<div class="paragraph">
+<p><strong>Use Cases</strong>:
+    Neo4j excels in scenarios such as social networks, recommendation engines, fraud detection,and pathfinding problems.</p>
 </div>
 <div class="paragraph">
 <p>Want to know more?</p>
 </div>
 <div class="paragraph">
-<p>Graph Database for Beginners Blog Series</p>
+<p>Blogs</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://neo4j.com/blog/why-graph-databases-are-the-future/?ref=blog" target="_blank"><strong>Why graph databases are the future</strong></a></p>
+</li>
+<li>
+<p><a href="https://neo4j.com/blog/why-graph-data-relationships-matter/?ref=blog" target="_blank"><strong>Why Connected Data Matters</strong></a></p>
+</li>
+<li>
+<p><a href="https://neo4j.com/blog/native-vs-non-native-graph-technology/" target="_blank"><strong>Native vs. Non-Native Graph Database</strong></a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://neo4j.com/use-cases/?utm_source=Google&amp;utm_medium=PaidSearch&amp;utm_campaign=Evergreen&amp;utm_content=AMS-Search-SEMCE-DSA-None-SEM-SEM-NonABM&amp;utm_term=&amp;utm_adgroup=DSA&amp;gad_source=1&amp;gclid=CjwKCAjwzIK1BhAuEiwAHQmU3rHlh92csAeuTAZryM3YZIjUl_GoutQ-HA8wPU6lUIr4QOryfBEuJBoC1nUQAvD_BwE" target="_blank"><strong>More Use Cases</strong></a></p>
 </div>
 	</div>
   </div>
@@ -175,26 +166,10 @@ Relationships are also referred to as edges, links, or lines.</p>
     <br/>
     <div>
       <div class="paragraph">
-<p>In this demo, we&#8217;ll explore how Neo4j handles graph algorithms with a practical example similar to the word game <a href="https://everydaypuzzlesgame.com/g/tangle/index.html" target="_blank"><strong>Tangle</strong></a>:</p>
+<p>In this demo we’re going to use the unique capabilities of Neo4j&#8217;s graph architecture to solve a <a href="https://everydaypuzzlesgame.com/g/tangle/index.html" target="_blank"><strong>Tangle</strong></a> word puzzle.</p>
 </div>
 <div class="paragraph">
-<p><strong>Scenario</strong>: Given two English words of length n, find the shortest path between them where each step changes one letter to form a valid English word.</p>
-</div>
-<div class="paragraph">
-<p><strong>Implementation</strong>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Step 1</strong>: Load a dataset of English words into Neo4j as nodes.</p>
-</li>
-<li>
-<p><strong>Step 2</strong>: Create relationships between nodes (words) if they differ by exactly one character.</p>
-</li>
-<li>
-<p><strong>Step 3</strong>: Execute a shortest path algorithm query to find the shortest transformation path between two input words.</p>
-</li>
-</ul>
+<p><strong>Scenario</strong>: The puzzle will offer two four letter words and require us to find the shortest path between the two words while only changing one letter at a time</p>
 </div>
 	</div>
   </div>
@@ -235,31 +210,26 @@ FOREACH (i in range(1, word.length) | MERGE (l:Letter {value: substring(word.val
 <div class="paragraph">
 <p>Want to know more?</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a help-topic='load csv'>LOAD CSV</a></p>
-</li>
-<li>
-<p><a help-topic='with'>WITH</a></p>
-</li>
-<li>
-<p><a help-topic='match'>MATCH</a></p>
-</li>
-<li>
-<p><a help-topic='where'>WHERE</a></p>
-</li>
-<li>
-<p><a help-topic='create'>CREATE</a></p>
-</li>
-<li>
-<p><a help-topic='foreach'>FOREACH</a></p>
-</li>
-<li>
-<p><a help-topic='merge'>MERGE</a></p>
-</li>
-</ul>
-</div>
+<table class="table tableblock frame-all grid-all" style="width: 100%;">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a help-topic='load csv'>LOAD CSV</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a help-topic='with'>WITH</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a help-topic='match'>MATCH</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a help-topic='where'>WHERE</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a help-topic='create'>CREATE</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a help-topic='foreach'>FOREACH</a></p></td>
+</tr>
+</tbody>
+</table>
 	</div>
   </div>
 </slide>
@@ -274,12 +244,25 @@ FOREACH (i in range(1, word.length) | MERGE (l:Letter {value: substring(word.val
       
 
 
-   <h4>How to determine single character difference between words</h4>
+   <h4>How to we determine single character difference between words</h4>
    <div class="paragraph">
-<p>create the linked relationship using <a href="https://neo4j.com/docs/graph-data-science/current/algorithms/node-similarity/" target="_blank"><strong>Overlap Similarity</strong></a></p>
+<p>To solve this problem we will use the <a href="https://neo4j.com/docs/graph-data-science/current/algorithms/node-similarity/" target="_blank"><strong>Overlap Similarity</strong></a> algorithm</p>
 </div>
 <div class="paragraph">
-<p>Project the data into a named graph</p>
+<p>The formula for calculating overlap simarilty is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Overlap (A,B) = A ∩ B / min(|A|,|B|)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>four our implementation this means:
+how many characters are equal (same letter,same position) divided by the length of the shortest word</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 1</strong>:
+Create a graph projection</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -294,7 +277,8 @@ FOREACH (i in range(1, word.length) | MERGE (l:Letter {value: substring(word.val
 </div>
 </div>
 <div class="paragraph">
-<p>Determine the similarity by calculating the overlap coefficient
+<p><strong>Step 2</strong>:
+Determine the similarity by calculating the overlap coefficient
 based on the letters in the words and the letters position within the word</p>
 </div>
 <div class="listingblock">
@@ -313,12 +297,14 @@ YIELD nodesCompared, relationshipsWritten
 RETURN *<!--/code--></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>TODO</strong>: add links for each GDS statement explaining what is happening</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Want to know more?</p>
+</div>
+<div class="paragraph">
+<p><a href="https://neo4j.com/docs/graph-data-science/current/management-ops/graph-creation/graph-project/" target="_blank"><strong>Graph Projection</strong></a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://neo4j.com/docs/graph-data-science/current/algorithms/node-similarity/" target="_blank"><strong>Overlap Similarity</strong></a></p>
 </div>
 	</div>
   </div>
@@ -334,12 +320,12 @@ RETURN *<!--/code--></pre>
       
 
 
-   <h4>Finding the shortest path between two words to</h4>
+   <h4>Finding the shortest path between two words</h4>
    <div class="paragraph">
 <p>Lets head to <a href="https://everydaypuzzlesgame.com/g/tangle/index.html" target="_blank"><strong>Tangle</strong></a> now</p>
 </div>
 <div class="paragraph">
-<p>Let&#8217;s get the source word and target word and update the below statement to reflect today&#8217;s puzzle</p>
+<p>We&#8217;ll update the below cypher&#8217;s start and end parameters to reflect today&#8217;s puzzle</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -347,7 +333,7 @@ RETURN *<!--/code--></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Using Neo4j&#8217;s shortest path algorithm we will determine the solution to today&#8217;s Tangle puzzle</p>
+<p>Using Neo4j&#8217;s shortest path algorithm we can determine the solution to today&#8217;s Tangle puzzle</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -368,7 +354,35 @@ RETURN path<!--/code--></pre>
     <br/>
     <div>
       <div class="paragraph">
-<p><strong>TODO</strong></p>
+<p>We used two graph algorithms (shortest path algorithm and overlap similarity algorithm) to solve a tangle word puzzle</p>
+</div>
+<div class="paragraph">
+<p>Both of these algorithms are natively supported by neo4j because it is a graph database</p>
+</div>
+<div class="paragraph">
+<p>This allowed us to do a computationally expensive search very quickly because of index free adjacency</p>
+</div>
+<div class="paragraph">
+<p>The key message of index-free adjacency is, that the complexity to traverse the whole graph is O(n), where n is the number of nodes. In contrast, using any index will have complexity O(n log n).</p>
+</div>
+<div class="paragraph">
+<p>No matter what words we had, we can always find each individual word very quickly ( if we had different languages, more letters, etc it would be just as fast and effective)</p>
+</div>
+
+
+
+   <h4>Next Steps</h4>
+   <div class="paragraph">
+<p>We could start expanding this knowledge graph to solve other word puzzles such as  crosswords, boggle, wordle, etc</p>
+</div>
+<div class="paragraph">
+<p>Try adding an index on the property and see how that affects our search</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->CREATE INDEX word_value_index IF NOT EXISTS
+FOR (n:Word) ON (n.value)<!--/code--></pre>
+</div>
 </div>
 	</div>
   </div>
@@ -415,6 +429,9 @@ RETURN path<!--/code--></pre>
 </li>
 <li>
 <p><a href="https://neo4j.com/blog/why-graph-data-relationships-matter/?ref=blog" target="_blank"><strong>Why Connected Data Matters</strong></a></p>
+</li>
+<li>
+<p><a href="https://neo4j.com/blog/native-vs-non-native-graph-technology/" target="_blank"><strong>Native vs. Non-Native Graph Database</strong></a></p>
 </li>
 </ul>
 </div>
