@@ -1,27 +1,53 @@
-= :guide Presenting Neo4j by Chris Banks
+= Learning Neo4j
 :neo4j-version: 5.21
 :author: Chris Banks
 
-== Introduction to Neo4j (3 minutes)
+== Intro To Neo4j
 
-Neo4j is a powerful graph database management system designed to handle highly interconnected data. Unlike traditional relational databases, Neo4j stores data in a graph structure consisting of nodes, relationships, and properties.
+Neo4j is a native graph database and has a query language called Cypher also sometimes called GQL (Graph Query Language) +
+it is similar to SQL but designed to better express graph traversals.
+Neo4j uses a property graph database model which uses the principals of graph theory
+and persists its data as a collection of nodes and the relationships between them.
 
-- *TODO*: Add additional data points
+Nodes 
+
+[cols="1",options="noheader"]
+|===
+|describe entities (discrete objects) of a domain
+
+|can have zero or more labels to define (classify) what kind of nodes they are.
+|=== 
+
+Relationships
+
+[cols="1",options="noheader"]
+|===
+|describe a single directed connection between a source node and a target node.
+
+|must have a type (one type) to define (classify) what type of relationship they are.
+|=== 
+
+
+Properties
+
+[cols="1",options="noheader"]
+|===
+|Nodes and relationships can have properties (key-value pairs), which further describe them. 
+|===   
+ 
+In mathematics, graph theory is the study of graphs.
+
+In graph theory:
+
+Nodes are also referred to as vertices or points.
+Relationships are also referred to as edges, links, or lines.
 
 Want to know more?
  
-* pass:a[<a play-topic='intro'>Browser Guide</a>]
 * pass:a[<a play-topic='concepts'>Neo4j Concepts</a>]
 * pass:a[<a play-topic='fundamentals'>About Cypher</a>]
-* pass:a[<a play-topic='cypher'>Intro to Cypher</a>]
-* pass:a[<a help-topic='help'>Help Me</a>]
 
-Developer Training
-
-- *TODO*: Link Graph academy opens in a new window
-- *TODO*: Link Neo4j Sandbox opens in a new window
-
-== Advantages over Relational SQL Databases (5 minutes)
+== Why Choose Neo4j?
 
 Neo4j offers several advantages over relational SQL databases:
 
@@ -29,13 +55,19 @@ Neo4j offers several advantages over relational SQL databases:
 - *Performance*: Graph traversal in Neo4j is efficient for complex queries involving interconnected data, eliminating the need for expensive join operations.
 - *Use Cases*: Neo4j excels in scenarios such as social networks, recommendation engines, fraud detection, and pathfinding problems.
 
--*TODO*: ADD links to relevant documentation published by neo4j 
+-*TODO* Flesh this slide out a bit more
 
-== Demo: Graph Algorithms and Shortest Path (5 minutes)
+Want to know more?
 
-In this demo, we'll explore how Neo4j handles graph algorithms with a practical example similar to the word game "Tangle":
+Graph Database for Beginners Blog Series
 
-*Scenario*: Given two 5-letter English words, find the shortest path between them where each step changes one letter to form a valid English word.
+
+
+== Demo: Tangle Puzzle
+
+In this demo, we'll explore how Neo4j handles graph algorithms with a practical example similar to the word game https://everydaypuzzlesgame.com/g/tangle/index.html[*Tangle*^]:
+
+*Scenario*: Given two English words of length n, find the shortest path between them where each step changes one letter to form a valid English word.
 
 *Implementation*:
 
@@ -43,22 +75,16 @@ In this demo, we'll explore how Neo4j handles graph algorithms with a practical 
 - **Step 2**: Create relationships between nodes (words) if they differ by exactly one character.
 - **Step 3**: Execute a shortest path algorithm query to find the shortest transformation path between two input words.
 
-== Load the dataset of English words
+== Problem 1: 
+
+===How to build a dataset of english words
 
 The below cypher loads data from the import folder of neo4j 
-
-[source,cypher]
-LOAD CSV FROM 'file:///words.csv' AS row
-WITH row[0] AS word 
-WHERE size(word) >= 3 AND size(word) <= 6
-CREATE (:Word {value: word, length: size(word)})
-
-If the above file was not found you can load the dataset via a url
 
 [source, cypher]
 LOAD CSV FROM 'https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt' AS row
 WITH row[0] AS word
-WHERE size(word) >= 3 AND size(word) <= 6
+WHERE size(word) = 4
 CREATE (:Word {value: word, length: size(word)})
 
 Expand the knowledge graph with character positions for each letter within the word
@@ -66,17 +92,27 @@ Expand the knowledge graph with character positions for each letter within the w
 [source,cypher]
 MATCH (word:Word)
 WITH word
-Foreach (i in range(1, word.length) | MERGE (l:Letter {value: substring(word.value,i-1,1), position: i}) MERGE (word)-[:CONTAINS]->(l))
+FOREACH (i in range(1, word.length) | MERGE (l:Letter {value: substring(word.value,i-1,1), position: i}) MERGE (word)-[:CONTAINS]->(l))
 
-- *TODO*: add links to each keyword found in the cypher above i.e. :help Foreach
+Want to know more?
 
-== Create relationships between nodes (words) 
+* pass:a[<a help-topic='load csv'>LOAD CSV</a>] 
+* pass:a[<a help-topic='with'>WITH</a>] 
+* pass:a[<a help-topic='match'>MATCH</a>] 
+* pass:a[<a help-topic='where'>WHERE</a>] 
+* pass:a[<a help-topic='create'>CREATE</a>] 
+* pass:a[<a help-topic='foreach'>FOREACH</a>] 
+* pass:a[<a help-topic='merge'>MERGE</a>]
 
+== Problem 2: 
+
+=== How to determine single character difference between words
 create the linked relationship using https://neo4j.com/docs/graph-data-science/current/algorithms/node-similarity/[*Overlap Similarity*^]
 
 //image::http://localhost:8081/img/overlap_nodesim.svg[Static,300]
 
 Project the data into a named graph
+
 [source,cypher]
 CALL gds.graph.project(
     'myGraph',
@@ -91,20 +127,59 @@ Determine the similarity by calculating the overlap coefficient
 based on the letters in the words and the letters position within the word
 
 [source,cypher]
-UNWIND range(3,6) AS wordlength
+WITh 4 AS wordlength
 CALL gds.nodeSimilarity.write('myGraph', {
-    writeRelationshipType: 'OVERLAP',
+    writeRelationshipType: 'SIMILAR',
     writeProperty: 'score',
-    topK: 1000, //each node can have at most 1000 similar nodes
-    degreeCutoff: wordlength, //only include words with the number of letters >=  wordlength
-    upperDegreeCutoff: wordlength, //only include words with the number of letters <= wordlength 
-    similarityCutoff: (wordlength -1 * 1.0) / (wordlength * 1.0) // only 
+    topK: 1000, 
+    degreeCutoff: wordlength,
+    upperDegreeCutoff: wordlength,
+    similarityCutoff: (wordlength -1 * 1.0) / (wordlength * 1.0),
+    similarityMetric: 'OVERLAP'
 })
 YIELD nodesCompared, relationshipsWritten
 RETURN *
 
 - *TODO*: add links for each GDS statement explaining what is happening 
 
-== Execute a shortest path algorithm
+== Problem 3: Finding the shortest path between two words
 
--*TODO*: add shortest path example use parameterized query to demonstrate 
+*TODO* Flesh out page and include documentation references
+
+
+[source, cypher]
+:params [{start, end}] => {RETURN 'rust' AS start, 'best' AS end }
+
+[source, cypher]
+MATCH (source:Word {value: $start}), (target:Word {value: $end})
+,  p=shortestPath((source)-[:SIMILAR*]-(target))
+RETURN p
+
+== Let's Solve Tangle
+
+*TODO*
+
+== Summary
+
+*TODO*
+
+== Further Reading
+
+=== Tutorials/Documentation
+
+* pass:a[<a play-topic='intro'>Browser Guide</a>]
+* pass:a[<a play-topic='concepts'>Neo4j Concepts</a>]
+* pass:a[<a play-topic='fundamentals'>About Cypher</a>]
+* pass:a[<a play-topic='cypher'>Intro to Cypher</a>]
+* pass:a[<a help-topic='help'>Help Me</a>]
+
+=== Blogs
+
+* https://neo4j.com/blog/why-graph-databases-are-the-future/?ref=blog[*Why graph databases are the future*^] 
+* https://neo4j.com/blog/why-graph-data-relationships-matter/?ref=blog[*Why Connected Data Matters*^] 
+
+=== Training
+
+Take a free official training course and get certified at the https://graphacademy.neo4j.com/[*Graph Academy*^,role=green].
+
+Want to spin up a free sandbox and start experimenting? Start a new https://neo4j.com/sandbox/[*Neo4j Sandbox*^].

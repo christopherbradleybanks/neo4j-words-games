@@ -25,7 +25,7 @@
   <carousel class="deck container-fluid">
     <!--slide class="row-fluid">
       <div class="col-sm-3">
-        <h3>:guide Presenting Neo4j by Chris Banks</h3>
+        <h3>Learning Neo4j</h3>
         <p class="lead">Information</p>
 			<!dl>
 				
@@ -41,27 +41,79 @@
         </figure>
       </div>
     </slide-->
-    <div class="literalblock">
-<div class="content">
-<pre>:neo4j-version: 5.21
-:author: Chris Banks</pre>
-</div>
-</div>
+    
 
 
-
-   <h4>:guide Presenting Neo4j by Chris Banks</h4>
+   <h4>Learning Neo4j</h4>
    
 
 
 <slide class="row-fluid">
   <div class="col-sm-12">
-    <h3>Introduction to Neo4j (3 minutes)</h3>
+    <h3>Intro To Neo4j</h3>
     <br/>
     <div>
       <div class="paragraph">
-<p>Neo4j is a powerful graph database management system designed to handle highly interconnected data. Unlike traditional relational databases, Neo4j stores data in a graph structure consisting of nodes, relationships, and properties.
-- <strong>TODO</strong>: Add additional data points</p>
+<p>Neo4j is a native graph database and has a query language called Cypher also sometimes called GQL (Graph Query Language)<br>
+it is similar to SQL but designed to better express graph traversals.
+Neo4j uses a property graph database model which uses the principals of graph theory
+and persists its data as a collection of nodes and the relationships between them.</p>
+</div>
+<div class="paragraph">
+<div class="title">Key Terms</div>
+<p>Nodes</p>
+</div>
+<table class="table tableblock frame-all grid-all" style="width: 100%;">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">describe entities (discrete objects) of a domain</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">can have zero or more labels to define (classify) what kind of nodes they are.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Relationships</p>
+</div>
+<table class="table tableblock frame-all grid-all" style="width: 100%;">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">describe a single directed connection between a source node and a target node.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">must have a type (one type) to define (classify) what type of relationship they are.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Properties</p>
+</div>
+<table class="table tableblock frame-all grid-all" style="width: 100%;">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nodes and relationships can have properties (key-value pairs), which further describe them.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>In mathematics, graph theory is the study of graphs.</p>
+</div>
+<div class="paragraph">
+<p>In graph theory:</p>
+</div>
+<div class="paragraph">
+<p>Nodes are also referred to as vertices or points.
+Relationships are also referred to as edges, links, or lines.</p>
 </div>
 <div class="paragraph">
 <p>Want to know more?</p>
@@ -69,32 +121,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>TODO</strong>: Add Links to browser guidses and documentation published by neo4j</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a play-topic='intro'>Browser Guide</a></p>
-</li>
-<li>
 <p><a play-topic='concepts'>Neo4j Concepts</a></p>
 </li>
 <li>
 <p><a play-topic='fundamentals'>About Cypher</a></p>
-</li>
-<li>
-<p><a play-topic='cypher'>Intro to Cypher</a></p>
-</li>
-<li>
-<p><a help-topic='keys'>Help Keys</a></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>TODO</strong>: Link Graph academy</p>
-</li>
-<li>
-<p><strong>TODO</strong>: Link Neo4j Sandbox</p>
 </li>
 </ul>
 </div>
@@ -106,7 +136,7 @@
 
 <slide class="row-fluid">
   <div class="col-sm-12">
-    <h3>Advantages over Relational SQL Databases (5 minutes)</h3>
+    <h3>Why Choose Neo4j?</h3>
     <br/>
     <div>
       <div class="paragraph">
@@ -126,7 +156,13 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>-<strong>TODO</strong>: ADD links to relevant documentation published by neo4j</p>
+<p>-<strong>TODO</strong> Flesh this slide out a bit more</p>
+</div>
+<div class="paragraph">
+<p>Want to know more?</p>
+</div>
+<div class="paragraph">
+<p>Graph Database for Beginners Blog Series</p>
 </div>
 	</div>
   </div>
@@ -136,14 +172,14 @@
 
 <slide class="row-fluid">
   <div class="col-sm-12">
-    <h3>Demo: Graph Algorithms and Shortest Path (5 minutes)</h3>
+    <h3>Demo: Tangle Puzzle</h3>
     <br/>
     <div>
       <div class="paragraph">
-<p>In this demo, we&#8217;ll explore how Neo4j handles graph algorithms with a practical example similar to the word game "Tangle":</p>
+<p>In this demo, we&#8217;ll explore how Neo4j handles graph algorithms with a practical example similar to the word game <a href="https://everydaypuzzlesgame.com/g/tangle/index.html" target="_blank"><strong>Tangle</strong></a>:</p>
 </div>
 <div class="paragraph">
-<p><strong>Scenario</strong>: Given two 5-letter English words, find the shortest path between them where each step changes one letter to form a valid English word.</p>
+<p><strong>Scenario</strong>: Given two English words of length n, find the shortest path between them where each step changes one letter to form a valid English word.</p>
 </div>
 <div class="paragraph">
 <p><strong>Implementation</strong>:</p>
@@ -169,28 +205,20 @@
 
 <slide class="row-fluid">
   <div class="col-sm-12">
-    <h3>Load the dataset of English words</h3>
+    <h3>Problem 1:</h3>
     <br/>
     <div>
       <div class="paragraph">
-<p>The below cypher loads data from the import folder of neo4j</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->LOAD CSV FROM 'file:///words.csv' AS row
-WITH row[0] AS word
-WHERE size(word) &gt;= 3 AND size(word) &lt;= 6
-CREATE (:Word {value: word, length: size(word)})<!--/code--></pre>
-</div>
+<p>===How to build a dataset of english words</p>
 </div>
 <div class="paragraph">
-<p>If the above file was not found you can load the dataset via a url</p>
+<p>The below cypher loads data from the import folder of neo4j</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->LOAD CSV FROM 'https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt' AS row
 WITH row[0] AS word
-WHERE size(word) &gt;= 3 AND size(word) &lt;= 6
+WHERE size(word) = 4
 CREATE (:Word {value: word, length: size(word)})<!--/code--></pre>
 </div>
 </div>
@@ -201,13 +229,34 @@ CREATE (:Word {value: word, length: size(word)})<!--/code--></pre>
 <div class="content">
 <pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->MATCH (word:Word)
 WITH word
-Foreach (i in range(1, word.length) | MERGE (l:Letter {value: substring(word.value,i-1,1), position: i}) MERGE (word)-[:CONTAINS]-&gt;(l))<!--/code--></pre>
+FOREACH (i in range(1, word.length) | MERGE (l:Letter {value: substring(word.value,i-1,1), position: i}) MERGE (word)-[:CONTAINS]-&gt;(l))<!--/code--></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Want to know more?</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>TODO</strong>: add links to each keyword found in the cypher above i.e. :help Foreach</p>
+<p><a help-topic='load csv'>LOAD CSV</a></p>
+</li>
+<li>
+<p><a help-topic='with'>WITH</a></p>
+</li>
+<li>
+<p><a help-topic='match'>MATCH</a></p>
+</li>
+<li>
+<p><a help-topic='where'>WHERE</a></p>
+</li>
+<li>
+<p><a help-topic='create'>CREATE</a></p>
+</li>
+<li>
+<p><a help-topic='foreach'>FOREACH</a></p>
+</li>
+<li>
+<p><a help-topic='merge'>MERGE</a></p>
 </li>
 </ul>
 </div>
@@ -219,10 +268,14 @@ Foreach (i in range(1, word.length) | MERGE (l:Letter {value: substring(word.val
 
 <slide class="row-fluid">
   <div class="col-sm-12">
-    <h3>Create relationships between nodes (words)</h3>
+    <h3>Problem 2:</h3>
     <br/>
     <div>
-      <div class="paragraph">
+      
+
+
+   <h4>How to determine single character difference between words</h4>
+   <div class="paragraph">
 <p>create the linked relationship using <a href="https://neo4j.com/docs/graph-data-science/current/algorithms/node-similarity/" target="_blank"><strong>Overlap Similarity</strong></a></p>
 </div>
 <div class="paragraph">
@@ -246,14 +299,15 @@ based on the letters in the words and the letters position within the word</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->UNWIND range(3,6) AS wordlength
+<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->WITh 4 AS wordlength
 CALL gds.nodeSimilarity.write('myGraph', {
-    writeRelationshipType: 'OVERLAP',
+    writeRelationshipType: 'SIMILAR',
     writeProperty: 'score',
-    topK: 1000, //each node can have at most 1000 similar nodes
-    degreeCutoff: wordlength, //only include words with the number of letters &gt;=  wordlength
-    upperDegreeCutoff: wordlength, //only include words with the number of letters &lt;= wordlength
-    similarityCutoff: (wordlength -1 * 1.0) / (wordlength * 1.0) // only
+    topK: 1000,
+    degreeCutoff: wordlength,
+    upperDegreeCutoff: wordlength,
+    similarityCutoff: (wordlength -1 * 1.0) / (wordlength * 1.0),
+    similarityMetric: 'OVERLAP'
 })
 YIELD nodesCompared, relationshipsWritten
 RETURN *<!--/code--></pre>
@@ -274,11 +328,109 @@ RETURN *<!--/code--></pre>
 
 <slide class="row-fluid">
   <div class="col-sm-12">
-    <h3>Execute a shortest path algorithm</h3>
+    <h3>Problem 3: Finding the shortest path between two words</h3>
     <br/>
     <div>
       <div class="paragraph">
-<p>-<strong>TODO</strong>: add shortest path example use parameterized query to demonstrate</p>
+<p><strong>TODO</strong> Flesh out page and include documentation references</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->:params [{start, end}] =&gt; {RETURN 'rust' AS start, 'best' AS end }<!--/code--></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->MATCH (source:Word {value: $start}), (target:Word {value: $end})
+,  p=shortestPath((source)-[:SIMILAR*]-(target))
+RETURN p<!--/code--></pre>
+</div>
+</div>
+	</div>
+  </div>
+</slide>
+
+
+
+<slide class="row-fluid">
+  <div class="col-sm-12">
+    <h3>Let&#8217;s Solve Tangle</h3>
+    <br/>
+    <div>
+      <div class="paragraph">
+<p><strong>TODO</strong></p>
+</div>
+	</div>
+  </div>
+</slide>
+
+
+
+<slide class="row-fluid">
+  <div class="col-sm-12">
+    <h3>Summary</h3>
+    <br/>
+    <div>
+      <div class="paragraph">
+<p><strong>TODO</strong></p>
+</div>
+	</div>
+  </div>
+</slide>
+
+
+
+<slide class="row-fluid">
+  <div class="col-sm-12">
+    <h3>Further Reading</h3>
+    <br/>
+    <div>
+      
+
+
+   <h4>Tutorials/Documentation</h4>
+   <div class="ulist">
+<ul>
+<li>
+<p><a play-topic='intro'>Browser Guide</a></p>
+</li>
+<li>
+<p><a play-topic='concepts'>Neo4j Concepts</a></p>
+</li>
+<li>
+<p><a play-topic='fundamentals'>About Cypher</a></p>
+</li>
+<li>
+<p><a play-topic='cypher'>Intro to Cypher</a></p>
+</li>
+<li>
+<p><a help-topic='help'>Help Me</a></p>
+</li>
+</ul>
+</div>
+
+
+
+   <h4>Blogs</h4>
+   <div class="ulist">
+<ul>
+<li>
+<p><a href="https://neo4j.com/blog/why-graph-databases-are-the-future/?ref=blog" target="_blank"><strong>Why graph databases are the future</strong></a></p>
+</li>
+<li>
+<p><a href="https://neo4j.com/blog/why-graph-data-relationships-matter/?ref=blog" target="_blank"><strong>Why Connected Data Matters</strong></a></p>
+</li>
+</ul>
+</div>
+
+
+
+   <h4>Training</h4>
+   <div class="paragraph">
+<p>Take a free official training course and get certified at the <a href="https://graphacademy.neo4j.com/" class="green" target="_blank"><strong>Graph Academy</strong></a>.</p>
+</div>
+<div class="paragraph">
+<p>Want to spin up a free sandbox and start experimenting? Start a new <a href="https://neo4j.com/sandbox/" target="_blank"><strong>Neo4j Sandbox</strong></a>.</p>
 </div>
 	</div>
   </div>
