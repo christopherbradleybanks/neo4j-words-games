@@ -41,7 +41,7 @@ Full options:
 To view the guides in the Neo4j Browser, run:
 
 ----
-:play http://localhost:8001/html/a_guide.html
+:play http://localhost:8081/html/a_guide.html
 ----
 
-You can find more details on how to create https://portal.graphgist.org/graph_gists[*Graph Guides*^]
+You can find more details on how to create https://portal.graphgist.org/graph_gists[*Graph Guides*^] here
