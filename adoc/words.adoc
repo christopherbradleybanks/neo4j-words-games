@@ -78,7 +78,7 @@ In this demo we’re going to use the unique capabilities of Neo4j's graph archi
 
 === How to build a dataset of english words
 
-The below cypher loads data from the import folder of neo4j 
+The below cypher loads data from a url 
 
 [source, cypher]
 LOAD CSV FROM 'https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt' AS row
