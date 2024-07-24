@@ -12,7 +12,7 @@
 
 * the guide should autoload if not type :guide http://localhost:8081/html/words.html in the noe4j browser window
 
-If desired you can use the rest 
+If desired you can create additional guides from this repository using the below commands.
 
 === Converting Asciidoc Files to Neo4j Browser Guides
 
