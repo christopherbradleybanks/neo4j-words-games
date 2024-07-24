@@ -19,6 +19,13 @@ services:
       - ./neo4j/logs:/logs
       - ./neo4j/import:/import
       - ./neo4j/plugins:/plugins
-
+  guide:
+    container_name: guide
+    build: .
+    ports:
+     - 8081:8081
+    volumes:
+      - ./html/:/html
+      - ./img/:/img
 
   
