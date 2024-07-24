@@ -201,7 +201,7 @@ No matter what words we had, we can always find each individual word very quickl
 
 We could start expanding this knowledge graph to solve other word puzzles such as  crosswords, boggle, wordle, etc 
 
-Try adding an index on the property and see how that affects our search
+Try adding an index on the :Word node's value property and see how that affects our search
 
 [source, cypher]
 CREATE INDEX word_value_index IF NOT EXISTS
