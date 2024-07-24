@@ -187,7 +187,7 @@ and <strong>relationships</strong> will often be called edges, links or lines.</
 
    <h4>How to build a dataset of english words</h4>
    <div class="paragraph">
-<p>The below cypher loads data from the import folder of neo4j</p>
+<p>The below cypher loads data from a url</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -367,7 +367,7 @@ RETURN path<!--/code--></pre>
     <br/>
     <div>
       <div class="paragraph">
-<p>We used two graph algorithms (shortest path algorithm and overlap similarity algorithm) to solve a tangle word puzzle</p>
+<p>We used two graph algorithms (shortest path algorithm and overlap similarity algorithm) to solve a Tangle word puzzle</p>
 </div>
 <div class="paragraph">
 <p>Both of these algorithms are natively supported by neo4j because it is a graph database</p>
@@ -389,7 +389,7 @@ RETURN path<!--/code--></pre>
 <p>We could start expanding this knowledge graph to solve other word puzzles such as  crosswords, boggle, wordle, etc</p>
 </div>
 <div class="paragraph">
-<p>Try adding an index on the property and see how that affects our search</p>
+<p>Try adding an index on the :Word node&#8217;s value property and see how that affects our search</p>
 </div>
 <div class="listingblock">
 <div class="content">
