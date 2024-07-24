@@ -110,7 +110,7 @@ Want to know more?
 
 == Problem 2: 
 
-=== How to we determine single character difference between words
+=== How do we determine single character difference between words
 
 To solve this problem we will use the https://neo4j.com/docs/graph-data-science/current/algorithms/node-similarity/[*Overlap Similarity*^] algorithm
 
@@ -180,7 +180,7 @@ RETURN path
 
 Want to know more?
 
-[%noheader,cols=2*] 
+[%noheader,cols=1*] 
 |===
 |pass:a[<a help-topic='params'>Params</a>]
 |===
