@@ -187,7 +187,7 @@ Want to know more?
 
 == Summary
 
-We used two graph algorithms (shortest path algorithm and overlap similarity algorithm) to solve a tangle word puzzle
+We used two graph algorithms (shortest path algorithm and overlap similarity algorithm) to solve a Tangle word puzzle
 
 Both of these algorithms are natively supported by neo4j because it is a graph database
 
