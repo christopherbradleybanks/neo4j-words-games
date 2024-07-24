@@ -1,4 +1,20 @@
-== Converting Asciidoc Files to Neo4j Browser Guides
+= Guide to Solving Tangle in Neo4j
+
+=== How to get Started
+
+* install docker and docker-compose
+
+* create .env file using env.example as your guide
+
+* enter the command docker-compose up from the root of the project this will start neo4j as well as a server to host our guide
+
+* navigate to localhost:7474/browser and enter your user: 'neo4j' and password
+
+* the guide should autoload if not type :guide http://localhost:8081/html/words.html in the noe4j browser window
+
+If desired you can use the rest 
+
+=== Converting Asciidoc Files to Neo4j Browser Guides
 
 This program uses AsciiDoctor erb templates to generate an outline html and a slide for each level two header.
 
@@ -22,29 +38,10 @@ Full options:
          +1 https://guides.neo4j.com/sandbox/recommendations -a neo4j-version=5.4 -a env-guide
 ----
 
-=== Start Local Server
-
-It is patched to allow CORS headers for the browser to serve the HTML directory.
-
-----
-python http-server.py &
-----
-
-=== Configuration
-
-* before Neo4j 3.0 add `dbms.browser.remote_content_hostname_whitelist=*` to `conf/neo4j-server.properties` 
-* from Neo4j 3.0 add `browser.remote_content_hostname_whitelist=*` to `conf/neo4j.conf` 
-
-and restart.
-You can also add the specific `localhost:8001` address.
-
-For `neo4j-community` you have to use `sudo` and run the http script on port 80.
-For example, use `BaseHTTPServer.HTTPServer(("0.0.0.0", 80),CORSRequestHandler).serve_forever()` in `http.py`
-
 To view the guides in the Neo4j Browser, run:
 
 ----
 :play http://localhost:8001/html/a_guide.html
 ----
 
-You can find more details on how to create guides and their format in link:docs/remote-guides.md[] and an example in link:docs/remote.html[]
+You can find more details on how to create guides and their format at portal.graphgists.com
