@@ -178,6 +178,13 @@ MATCH (start:Word {value: $start}), (end:Word {value: $end})
 ,  path=shortestPath((start)-[:SIMILAR*]-(end))
 RETURN path
 
+Want to know more?
+
+[%noheader,cols=2*] 
+|===
+|pass:a[<a help-topic='params'>Params</a>]
+|===
+
 == Summary
 
 We used two graph algorithms (shortest path algorithm and overlap similarity algorithm) to solve a tangle word puzzle
@@ -212,7 +219,7 @@ FOR (n:Word) ON (n.value)
 
 === Blogs
 
-* https://neo4j.com/blog/why-graph-databases-are-the-future/?ref=blog[*Why graph databases are the future*^] 
+* https://neo4j.com/blog/why-graph-databases-are-the-future/?ref=blog[*Why Graph Databases Are The Future*^] 
 * https://neo4j.com/blog/why-graph-data-relationships-matter/?ref=blog[*Why Connected Data Matters*^] 
 * https://neo4j.com/blog/native-vs-non-native-graph-technology/[*Native vs. Non-Native Graph Database*^]
 
