@@ -2,7 +2,7 @@
 :neo4j-version: 5.21
 :author: Chris Banks
 
-== Intro To Neo4j
+== Intro To Neo4j - tst
 
 Neo4j is a native graph database and has a query language called Cypher also sometimes called GQL (Graph Query Language) +
 it is similar to SQL but designed to better express graph traversals.
@@ -13,7 +13,7 @@ Nodes
 
 [cols="1",options="noheader"]
 |===
-|describe entities (discrete objects) of a domain
+|describe entities (discrete objects) of a domain.
 
 |can have zero or more labels to define (classify) what kind of nodes they are.
 |=== 
