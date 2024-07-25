@@ -4,7 +4,7 @@
 
 == Intro To Neo4j
 
-Neo4j is a native graph database and has a query language called Cypher also sometimes called GQL (Graph Query Language) +
+Neo4j is a native graph database and has a query language called Cypher +
 it is similar to SQL but designed to better express graph traversals.
 Neo4j uses a property graph database model which uses the principals of graph theory
 and persists its data as a collection of nodes and the relationships between them.
