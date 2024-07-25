@@ -186,14 +186,19 @@ and <strong>relationships</strong> will often be called edges, links or lines.</
 
 
    <h4>How to build a dataset of english words</h4>
-   <div class="paragraph">
+   <div class="listingblock">
+<div class="content">
+<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->:param wordLength =&gt; 4<!--/code--></pre>
+</div>
+</div>
+<div class="paragraph">
 <p>The below cypher loads data from a url</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->LOAD CSV FROM 'https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt' AS row
 WITH row[0] AS word
-WHERE size(word) = 4
+WHERE size(word) = $wordLength
 CREATE (:Word {value: word, length: size(word)})<!--/code--></pre>
 </div>
 </div>
@@ -251,10 +256,44 @@ FOREACH (i in range(1, word.length) | MERGE (l:Letter {value: substring(word.val
 <div class="paragraph">
 <p>The formula for calculating overlap simarilty is:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>Overlap (A,B) = A ∩ B / min(|A|,|B|)</pre>
-</div>
+<div class="paragraph">
+<p><math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mstyle displaystyle="true">
+    <mrow>
+      <mtext>overlap (A,B)</mtext>
+    </mrow>
+    <mo>=</mo>
+    <mfrac>
+      <mrow>
+        <mrow>
+          <mo>|</mo>
+          <mi>A</mi>
+          <mo>&#x2229;</mo>
+          <mi>B</mi>
+          <mo>|</mo>
+        </mrow>
+      </mrow>
+      <mrow>
+        <mo>min</mo>
+        <mrow>
+          <mo>(</mo>
+          <mrow>
+            <mo>|</mo>
+            <mi>A</mi>
+            <mo>|</mo>
+          </mrow>
+          <mo>,</mo>
+          <mrow>
+            <mo>|</mo>
+            <mi>B</mi>
+            <mo>|</mo>
+          </mrow>
+          <mo>)</mo>
+        </mrow>
+      </mrow>
+    </mfrac>
+  </mstyle>
+</math></p>
 </div>
 <div class="paragraph">
 <p>four our implementation this means:
@@ -283,14 +322,13 @@ based on the letters in the words and the letters position within the word</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->WITh 4 AS wordlength
-CALL gds.nodeSimilarity.write('myGraph', {
+<pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->CALL gds.nodeSimilarity.write('myGraph', {
     writeRelationshipType: 'SIMILAR',
     writeProperty: 'score',
     topK: 1000,
-    degreeCutoff: wordlength,
-    upperDegreeCutoff: wordlength,
-    similarityCutoff: (wordlength -1 * 1.0) / (wordlength * 1.0),
+    degreeCutoff: $wordlength,
+    upperDegreeCutoff: $wordlength,
+    similarityCutoff: ($wordlength -1 * 1.0) / ($wordlength * 1.0),
     similarityMetric: 'OVERLAP'
 })
 YIELD nodesCompared, relationshipsWritten

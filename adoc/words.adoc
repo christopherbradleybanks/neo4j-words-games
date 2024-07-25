@@ -1,6 +1,7 @@
 = Learning Neo4j
 :neo4j-version: 5.21
 :author: Chris Banks
+:stem:
 
 == Intro To Neo4j
 
@@ -78,12 +79,15 @@ In this demo we’re going to use the unique capabilities of Neo4j's graph archi
 
 === How to build a dataset of english words
 
+[source, cypher]
+:param wordLength => 4
+
 The below cypher loads data from a url 
 
 [source, cypher]
 LOAD CSV FROM 'https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt' AS row
 WITH row[0] AS word
-WHERE size(word) = 4
+WHERE size(word) = $wordLength
 CREATE (:Word {value: word, length: size(word)})
 
 Expand the knowledge graph with character positions for each letter within the word
@@ -116,9 +120,43 @@ To solve this problem we will use the https://neo4j.com/docs/graph-data-science/
 
 The formula for calculating overlap simarilty is:
 
-----
-Overlap (A,B) = A ∩ B / min(|A|,|B|)
-----
+pass:a[<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mstyle displaystyle="true">
+    <mrow>
+      <mtext>overlap (A,B)</mtext>
+    </mrow>
+    <mo>=</mo>
+    <mfrac>
+      <mrow>
+        <mrow>
+          <mo>|</mo>
+          <mi>A</mi>
+          <mo>&#x2229;</mo>
+          <mi>B</mi>
+          <mo>|</mo>
+        </mrow>
+      </mrow>
+      <mrow>
+        <mo>min</mo>
+        <mrow>
+          <mo>(</mo>
+          <mrow>
+            <mo>|</mo>
+            <mi>A</mi>
+            <mo>|</mo>
+          </mrow>
+          <mo>,</mo>
+          <mrow>
+            <mo>|</mo>
+            <mi>B</mi>
+            <mo>|</mo>
+          </mrow>
+          <mo>)</mo>
+        </mrow>
+      </mrow>
+    </mfrac>
+  </mstyle>
+</math>]
 
 four our implementation this means:
 how many characters are equal (same letter,same position) divided by the length of the shortest word
@@ -141,14 +179,13 @@ Determine the similarity by calculating the overlap coefficient
 based on the letters in the words and the letters position within the word
 
 [source,cypher]
-WITh 4 AS wordlength
 CALL gds.nodeSimilarity.write('myGraph', {
     writeRelationshipType: 'SIMILAR',
     writeProperty: 'score',
     topK: 1000, 
-    degreeCutoff: wordlength,
-    upperDegreeCutoff: wordlength,
-    similarityCutoff: (wordlength -1 * 1.0) / (wordlength * 1.0),
+    degreeCutoff: $wordlength,
+    upperDegreeCutoff: $wordlength,
+    similarityCutoff: ($wordlength -1 * 1.0) / ($wordlength * 1.0),
     similarityMetric: 'OVERLAP'
 })
 YIELD nodesCompared, relationshipsWritten
