@@ -73,7 +73,7 @@ https://neo4j.com/use-cases/?utm_source=Google&utm_medium=PaidSearch&utm_campaig
 
 In this demo we’re going to use the unique capabilities of Neo4j's graph architecture to solve a https://everydaypuzzlesgame.com/g/tangle/index.html[*Tangle*^] word puzzle.
 
-*Scenario*: The puzzle will offer two four letter words and require us to find the shortest path between the two words while only changing one letter at a time
+*Scenario*: The puzzle will offer two words of equal length and require us to find the shortest path between the two words while only changing one letter at a time
 
 == Problem 1: 
 
@@ -158,7 +158,7 @@ pass:a[<math xmlns="http://www.w3.org/1998/Math/MathML">
   </mstyle>
 </math>]
 
-four our implementation this means:
+for our implementation this means:
 how many characters are equal (same letter,same position) divided by the length of the shortest word
 
 *Step 1*:
