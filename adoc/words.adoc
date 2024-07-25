@@ -183,9 +183,9 @@ CALL gds.nodeSimilarity.write('myGraph', {
     writeRelationshipType: 'SIMILAR',
     writeProperty: 'score',
     topK: 1000, 
-    degreeCutoff: $wordlength,
-    upperDegreeCutoff: $wordlength,
-    similarityCutoff: ($wordlength -1 * 1.0) / ($wordlength * 1.0),
+    degreeCutoff: $wordLength,
+    upperDegreeCutoff: $wordLength,
+    similarityCutoff: ($wordLength -1 * 1.0) / ($wordLength * 1.0),
     similarityMetric: 'OVERLAP'
 })
 YIELD nodesCompared, relationshipsWritten
