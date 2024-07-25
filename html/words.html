@@ -185,7 +185,7 @@ and <strong>relationships</strong> will often be called edges, links or lines.</
       
 
 
-   <h4>How to build a dataset of english words</h4>
+   <h4>Generate a dataset of Word nodes</h4>
    <div class="listingblock">
 <div class="content">
 <pre mode="cypher"  class="highlight pre-scrollable programlisting cm-s-neo code runnable standalone-example ng-binding" data-lang="cypher" lang="cypher"><!--code class="cypher language-cypher"-->:param wordLength =&gt; 4<!--/code--></pre>
@@ -249,7 +249,7 @@ FOREACH (i in range(1, word.length) | MERGE (l:Letter {value: substring(word.val
       
 
 
-   <h4>How do we determine single character difference between words</h4>
+   <h4>Define relationship between words</h4>
    <div class="paragraph">
 <p>To solve this problem we will use the <a href="https://neo4j.com/docs/graph-data-science/current/algorithms/node-similarity/" target="_blank"><strong>Overlap Similarity</strong></a> algorithm</p>
 </div>
@@ -358,7 +358,7 @@ RETURN *<!--/code--></pre>
       
 
 
-   <h4>Finding the shortest path between two words</h4>
+   <h4>Find shortest path between two words</h4>
    <div class="paragraph">
 <p>Lets head to <a href="https://everydaypuzzlesgame.com/g/tangle/index.html" target="_blank"><strong>Tangle</strong></a> now</p>
 </div>

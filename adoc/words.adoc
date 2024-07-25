@@ -77,7 +77,7 @@ In this demo we’re going to use the unique capabilities of Neo4j's graph archi
 
 == Problem 1: 
 
-=== How to build a dataset of english words
+=== Generate a dataset of Word nodes
 
 [source, cypher]
 :param wordLength => 4
@@ -114,7 +114,7 @@ Want to know more?
 
 == Problem 2: 
 
-=== How do we determine single character difference between words
+=== Define relationship between words
 
 To solve this problem we will use the https://neo4j.com/docs/graph-data-science/current/algorithms/node-similarity/[*Overlap Similarity*^] algorithm
 
@@ -199,7 +199,7 @@ https://neo4j.com/docs/graph-data-science/current/algorithms/node-similarity/[*O
 
 == Problem 3:
 
-=== Finding the shortest path between two words
+=== Find shortest path between two words
 
 Lets head to https://everydaypuzzlesgame.com/g/tangle/index.html[*Tangle*^] now
 
