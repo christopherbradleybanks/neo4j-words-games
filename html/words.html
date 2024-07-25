@@ -169,7 +169,7 @@ and <strong>relationships</strong> will often be called edges, links or lines.</
 <p>In this demo we’re going to use the unique capabilities of Neo4j&#8217;s graph architecture to solve a <a href="https://everydaypuzzlesgame.com/g/tangle/index.html" target="_blank"><strong>Tangle</strong></a> word puzzle.</p>
 </div>
 <div class="paragraph">
-<p><strong>Scenario</strong>: The puzzle will offer two four letter words and require us to find the shortest path between the two words while only changing one letter at a time</p>
+<p><strong>Scenario</strong>: The puzzle will offer two words of equal length and require us to find the shortest path between the two words while only changing one letter at a time</p>
 </div>
 	</div>
   </div>
@@ -296,7 +296,7 @@ FOREACH (i in range(1, word.length) | MERGE (l:Letter {value: substring(word.val
 </math></p>
 </div>
 <div class="paragraph">
-<p>four our implementation this means:
+<p>for our implementation this means:
 how many characters are equal (same letter,same position) divided by the length of the shortest word</p>
 </div>
 <div class="paragraph">
